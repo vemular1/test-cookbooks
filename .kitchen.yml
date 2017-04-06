@@ -1,6 +1,14 @@
 ---
 driver:
-  name: vagrant
+  name: ec2
+  aws_ssh_key_id: devopskey
+  region: us-east-1
+  availability_zone: a
+  subnet_id: subnet-e0a4c785
+  instance_type: t2.micro
+  image_id: ami-f4cc1de2
+  security_group_ids: sg-d2c8a2ad
+  retryable_tries: 120
 
 provisioner:
   name: chef_zero
@@ -12,12 +20,16 @@ provisioner:
 verifier:
   name: inspec
 
+transport:
+  ssh_key: /root/.ssh/devopskey.pem
+
 platforms:
   - name: ubuntu-16.04
-  - name: centos-7.2
+ #- name: centos-7.2
 
 suites:
   - name: default
+    data_bags_path: test/fixtures/default/data_bags
     run_list:
       - recipe[lamp::default]
     verifier:

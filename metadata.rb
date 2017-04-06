@@ -17,3 +17,8 @@ version '0.1.0'
 # a Supermarket.
 #
 # source_url 'https://github.com/<insert_org_here>/lamp' if respond_to?(:source_url)
+
+depends 'httpd', '~> 0.4.5'
+depends 'mysql', '~> 8.3.1'
+depends 'mysql2_chef_gem', '~> 2.0.1'
+depends 'database', '~> 6.1.1'
